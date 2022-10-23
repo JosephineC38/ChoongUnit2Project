@@ -53,13 +53,32 @@ public class LinearEquation {
    (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5" */
     public String equation() {
         String finalSlope = "";
+
+        String finalIntercept = "";
+        String interceptString = Double.toString(yIntercept());
+        if (interceptString.indexOf("-") != -1 ) {
+            finalIntercept = " - " + interceptString.substring(1);
+        } else {
+            finalIntercept = " + " + yIntercept();
+        }
+
+        if (yIntercept() == 0.0) {
+            finalIntercept = "";
+        }
+
+        if(interceptString.indexOf(".0") != -1) { //removes the .0 from the y-intercept
+            finalIntercept = interceptString.substring(0, interceptString.indexOf(".0"));
+        }
+
+
         String slopeString = Double.toString(slope());
         int slopeCheck = slopeString.indexOf(".0");
         if (slopeCheck != -1) {
             finalSlope = slopeString.substring(0, slopeCheck);
-        } else if (slope() == 0) {
-            finalSlope = "y = x" + yIntercept();
-        }  else {
+        } else if (finalSlope == "0") {
+            finalSlope = "";
+        }
+        else {
                 double slopeY = y2 - y1;
                 double slopeX = x2 - x1;
                 int divisor = 1;
@@ -74,18 +93,22 @@ public class LinearEquation {
                     stringY =  Double.toString(checkY);
                     stringX =  Double.toString(checkX);
                 }
-                if (stringX.indexOf("-") != -1) {
+                if (Math.abs(slopeX) != slopeX && Math.abs(slopeY) != slopeY) {
                     slopeX *= -1;
+                    slopeY *= -1;
+                } else if (Math.abs(slopeX) != slopeX) {
+                    slopeX *= -1;
+                    slopeY *= -1;
                 }
-                finalSlope =  Math.round (slopeY) + "/" + Math.round (slopeX);
+                finalSlope =  Math.round (slopeY) + "/" + Math.round (slopeX) + "x";
 
             }
-        String interceptString = Double.toString(yIntercept());
-        if (interceptString.indexOf("-") != -1 ) {
-            return finalSlope + "x - " + interceptString.substring(1);
-        } else {
-            return finalSlope + "x + " + yIntercept();
+        if (finalSlope.equals("1")) { //checks if the slope = 1
+            finalSlope = "x";
+        } else if (finalSlope.equals("-1")) { //checks if the slope = -1
+            finalSlope = "-x";
         }
+        return finalSlope + finalIntercept;
     }
 
 
