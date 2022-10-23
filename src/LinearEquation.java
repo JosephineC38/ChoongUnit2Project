@@ -36,7 +36,8 @@ public class LinearEquation {
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
    (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-        return  roundedToHundredth((x1 * slope()) - y1);
+        double yIntercept = x1 * slope();
+        return  roundedToHundredth(y1 - yIntercept);
     }
 
 
@@ -48,6 +49,15 @@ public class LinearEquation {
         return round / 100;
     }
 
+    /* Returns a String that represents the linear equation of the line through points
+   (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5" */
+    public String equation() {
+        if (slope() == 0) {
+            return "y = x" + yIntercept();
+        }
+    }
+
+
     /* Returns a string that includes all information about the linear equation, each on
        separate lines:
          - The original points: (x1, y1) and (x2, y2)
@@ -57,6 +67,7 @@ public class LinearEquation {
          - The distance between the two points (using distance() method) */
     public String lineInfo() {
         String info = "The two points are: (" + x1 + "," + y1 + ") and (" + x2 + "," + y2 + ")";
+        info += "\nThe equation of the line between these points is: " + equation();
         info += "\nThe slope of this line is: " + slope();
         info += "\nThe y-intercept of the is: " + yIntercept();
         info += "\nThe distance between the two points is: " + distance();
