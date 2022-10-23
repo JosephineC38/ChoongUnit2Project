@@ -111,6 +111,14 @@ public class LinearEquation {
         return finalSlope + finalIntercept;
     }
 
+    /* Returns a String of the coordinate point on the line that has the given x value, with
+   both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
+    public String coordinateForX(double xValue) {
+        Double yValue = (slope() * xValue) + yIntercept();
+        return "The point on the line is (" + xValue + ", " + yValue + );
+    }
+
+
 
     /* Returns a string that includes all information about the linear equation, each on
        separate lines:

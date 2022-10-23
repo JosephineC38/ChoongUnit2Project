@@ -24,6 +24,10 @@ public class LinearEqautionRunner {
         }
         LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
         System.out.println(equation.lineInfo());
+
+        System.out.print("Enter a value for x: ");
+        Double xValue = scan.nextDouble();
+
     }
 }
 

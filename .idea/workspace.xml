@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee653df8-5945-4910-87c7-7adf879e899c" name="Changes" comment="Nearly solved the equation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ee653df8-5945-4910-87c7-7adf879e899c" name="Changes" comment="Need to solve all of the requirements">
+      <change beforePath="$PROJECT_DIR$/src/LinearEqautionRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinearEqautionRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LinearEquation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinearEquation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666547155056</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Need to solve all of the requirements">
+      <created>1666550185676</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666550185676</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,7 +122,8 @@
     <MESSAGE value="I did something :)" />
     <MESSAGE value="More stuff" />
     <MESSAGE value="Nearly solved the equation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nearly solved the equation" />
+    <MESSAGE value="Need to solve all of the requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Need to solve all of the requirements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
