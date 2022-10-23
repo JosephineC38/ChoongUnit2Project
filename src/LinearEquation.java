@@ -52,8 +52,39 @@ public class LinearEquation {
     /* Returns a String that represents the linear equation of the line through points
    (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5" */
     public String equation() {
-        if (slope() == 0) {
-            return "y = x" + yIntercept();
+        String finalSlope = "";
+        String slopeString = Double.toString(slope());
+        int slopeCheck = slopeString.indexOf(".0");
+        if (slopeCheck != -1) {
+            finalSlope = slopeString.substring(0, slopeCheck);
+        } else if (slope() == 0) {
+            finalSlope = "y = x" + yIntercept();
+        }  else {
+                double slopeY = y2 - y1;
+                double slopeX = x2 - x1;
+                int divisor = 1;
+                double checkY = 1;
+                double checkX = 1;
+                String stringY = "";
+                String stringX = "";
+                while( stringY.indexOf("0") == -1 && stringX.indexOf("0") == -1) {
+                    divisor++;
+                    checkY = slopeY / divisor;
+                    checkX = slopeX / divisor;
+                    stringY =  Double.toString(checkY);
+                    stringX =  Double.toString(checkX);
+                }
+                if (stringX.indexOf("-") != -1) {
+                    slopeX *= -1;
+                }
+                finalSlope =  Math.round (slopeY) + "/" + Math.round (slopeX);
+
+            }
+        String interceptString = Double.toString(yIntercept());
+        if (interceptString.indexOf("-") != -1 ) {
+            return finalSlope + "x - " + interceptString.substring(1);
+        } else {
+            return finalSlope + "x + " + yIntercept();
         }
     }
 
@@ -67,14 +98,12 @@ public class LinearEquation {
          - The distance between the two points (using distance() method) */
     public String lineInfo() {
         String info = "The two points are: (" + x1 + "," + y1 + ") and (" + x2 + "," + y2 + ")";
-        info += "\nThe equation of the line between these points is: " + equation();
+        info += "\nThe equation of the line between these points is: y = " + equation();
         info += "\nThe slope of this line is: " + slope();
         info += "\nThe y-intercept of the is: " + yIntercept();
         info += "\nThe distance between the two points is: " + distance();
         return info;
     }
-
-
 
 }
 
