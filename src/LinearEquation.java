@@ -52,40 +52,47 @@ public class LinearEquation {
     /* Returns a String that represents the linear equation of the line through points
    (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5" */
     public String equation() {
+        //creates variables for the final equation
         String finalSlope = "";
-
         String finalIntercept = "";
+
+        //checks if the y-intercept is negative
         String interceptString = Double.toString(yIntercept());
         if (interceptString.indexOf("-") != -1 ) {
-            finalIntercept = " - " + interceptString.substring(1);
+            finalIntercept = " - " + interceptString.substring(1); //if the y-intercept is negative
         } else {
-            finalIntercept = " + " + yIntercept();
+            finalIntercept = " + " + yIntercept(); //if the y-intercept is positive
         }
 
+        //checks if the y-intercept is equal to zero
         if (yIntercept() == 0.0) {
             finalIntercept = "";
         }
 
-        if(interceptString.indexOf(".0") != -1) { //removes the .0 from the y-intercept
+        //checks and removes the .0 from the y-intercept
+        if(interceptString.indexOf(".0") != -1) {
             finalIntercept = interceptString.substring(0, interceptString.indexOf(".0"));
         }
 
-
+        //checks and removes the .0 from the slope
         String slopeString = Double.toString(slope());
         int slopeCheck = slopeString.indexOf(".0");
         if (slopeCheck != -1) {
             finalSlope = slopeString.substring(0, slopeCheck);
+
+            //checks if the slope is zero
         } else if (finalSlope == "0") {
             finalSlope = "";
         }
         else {
-                double slopeY = y2 - y1;
-                double slopeX = x2 - x1;
+            //does division to find a common factor between the x and y points
+                double slopeY = y2 - y1; //a constant
+                double slopeX = x2 - x1; //a constant
                 int divisor = 1;
                 double checkY = 1;
                 double checkX = 1;
-                String stringY = "";
-                String stringX = "";
+                String stringY = ""; //meant to be slopeY as a String to check if the divisor is a factor
+                String stringX = ""; //meant to be slopeX as a String to check if the divisor is a factor
                 while( stringY.indexOf("0") == -1 && stringX.indexOf("0") == -1) {
                     divisor++;
                     checkY = slopeY / divisor;
@@ -93,21 +100,29 @@ public class LinearEquation {
                     stringY =  Double.toString(checkY);
                     stringX =  Double.toString(checkX);
                 }
+                //checks if both x and y are negative. If it's true, removes the negative sign
                 if (Math.abs(slopeX) != slopeX && Math.abs(slopeY) != slopeY) {
                     slopeX *= -1;
                     slopeY *= -1;
+                    // checks if the x value is negative. If it's true, puts the negative sign before the slope
                 } else if (Math.abs(slopeX) != slopeX) {
                     slopeX *= -1;
                     slopeY *= -1;
                 }
+                //puts the slope into the correct format
                 finalSlope =  Math.round (slopeY) + "/" + Math.round (slopeX) + "x";
 
             }
-        if (finalSlope.equals("1")) { //checks if the slope = 1
+
+        //checks if the slope = 1
+        if (finalSlope.equals("1")) {
             finalSlope = "x";
-        } else if (finalSlope.equals("-1")) { //checks if the slope = -1
+            //checks if the slope = -1
+        } else if (finalSlope.equals("-1")) {
             finalSlope = "-x";
         }
+
+        //returns the final equation
         return finalSlope + finalIntercept;
     }
 
@@ -115,7 +130,8 @@ public class LinearEquation {
    both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
     public String coordinateForX(double xValue) {
         Double yValue = (slope() * xValue) + yIntercept();
-        return "The point on the line is (" + xValue + ", " + yValue + );
+        yValue = roundedToHundredth(yValue);
+        return "The point on the line is (" + xValue + ", " + yValue + ")";
     }
 
 
@@ -128,7 +144,7 @@ public class LinearEquation {
          - The y-intercept of the line (using yIntercept() method)
          - The distance between the two points (using distance() method) */
     public String lineInfo() {
-        String info = "The two points are: (" + x1 + "," + y1 + ") and (" + x2 + "," + y2 + ")";
+        String info = "The two points are: (" + x1 + " ," + y1 + ") and (" + x2 + " ," + y2 + ")";
         info += "\nThe equation of the line between these points is: y = " + equation();
         info += "\nThe slope of this line is: " + slope();
         info += "\nThe y-intercept of the is: " + yIntercept();
