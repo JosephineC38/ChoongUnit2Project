@@ -72,19 +72,36 @@ public class LinearEquation {
             finalIntercept = "";
         }
 
-        //checks if the slope is already an integer, returns the final equation if it is
+        //checks if the slope = 1
+        if (slope() == 1.0) {
+            return "x" + finalIntercept;
+            //checks if the slope = -1
+        } else if (slope() == -1.0) {
+            return "-x" + finalIntercept;
+        }
+
+        //chekcs if there is a horizontal line
+        if (slope() == 0.0) {
+            int interceptCheck = interceptString.indexOf(".0");
+            finalIntercept = interceptString.substring(0, interceptCheck);
+            return finalIntercept;
+        }
+
+        //checks if the slope is already an integer
         if (slope() % 1 == 0) {
             finalSlope = slopeString.substring(0, slopeCheck);
             return finalSlope + "x" + finalIntercept;
+        }
 
+        //checks if the slope is equal to one and passes through the origin
+        if (slope() == 1.0 && yIntercept() == 0.0) {
+            return "x";
         }
 
         //checks and removes the .0 from the slope
         if (slopeCheck != -1) {
             finalSlope = slopeString.substring(0, slopeCheck);
             //checks if the slope is zero
-        } else if (finalSlope == "0") {
-            finalSlope = "";
         } else {
             //does division to find a common factor between the x and y points
                 double slopeY = y2 - y1; //a constant
@@ -114,14 +131,6 @@ public class LinearEquation {
                 finalSlope =  Math.round (slopeY) + "/" + Math.round (slopeX) + "x";
 
             }
-
-        //checks if the slope = 1
-        if (finalSlope.equals("1")) {
-            finalSlope = "x";
-            //checks if the slope = -1
-        } else if (finalSlope.equals("-1")) {
-            finalSlope = "-x";
-        }
 
         //returns the final equation
         return finalSlope + finalIntercept;

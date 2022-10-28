@@ -47,7 +47,7 @@ public class LinearEqautionRunner {
         System.out.println("");
         System.out.print("Enter a value for x: ");
         Double xValue = scan.nextDouble();
-        System.out.print("/n" + equation.coordinateForX(xValue));
+        System.out.print("\n" + equation.coordinateForX(xValue));
 
     }
 }
