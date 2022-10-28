@@ -7,8 +7,14 @@ public class LinearEqautionRunner {
 
         //Asks user to enter coordinate 1 and separates the x and y points into int variables
         System.out.print("Enter coordinate 1: ");
-        String coord1 = scan.next();
-        scan.nextLine();
+        //For some reason, my entire program breaks if there is a space between coordinate. Fix that future me.
+        String coord1Scan = scan.nextLine();
+
+        //Before, if the user inputs "(1, -10)' instead of "(1,-10)", the program doesn't work. This fixes that problem
+        if(coord1Scan.indexOf(" ") != -1) {
+            coord1Scan = coord1Scan.substring(0,coord1Scan.indexOf(" ")) + coord1Scan.substring(coord1Scan.indexOf(" ") + 1);
+        }
+        String coord1 = coord1Scan;
         int coord1Check = coord1.indexOf(",");
         int coord1Length = coord1.length() - 1;
         int x1 = Integer.parseInt(coord1.substring(1, coord1Check));
@@ -16,8 +22,13 @@ public class LinearEqautionRunner {
 
         //Asks user to enter coordinate 2 and separates the x and y points into int variables
         System.out.print("Enter coordinate 2: ");
-        String coord2 = scan.next();
-        scan.nextLine();
+        String coord2Scan = scan.nextLine();
+
+        if(coord2Scan.indexOf(" ") != -1) {
+            coord2Scan = coord2Scan.substring(0,coord2Scan.indexOf(" ")) + coord2Scan.substring(coord2Scan.indexOf(" ") + 1);
+        }
+
+        String coord2 = coord2Scan;
         int coord2Check = coord2.indexOf(",");
         int coord2Length = coord2.length() - 1;
         int x2 = Integer.parseInt(coord2.substring(1, coord2Check));
@@ -36,7 +47,7 @@ public class LinearEqautionRunner {
         System.out.println("");
         System.out.print("Enter a value for x: ");
         Double xValue = scan.nextDouble();
-        System.out.print(equation.coordinateForX(xValue));
+        System.out.print("/n" + equation.coordinateForX(xValue));
 
     }
 }

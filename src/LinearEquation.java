@@ -56,6 +56,9 @@ public class LinearEquation {
         String finalSlope = "";
         String finalIntercept = "";
 
+        String slopeString = Double.toString(slope());
+        int slopeCheck = slopeString.indexOf(".0");
+
         //checks if the y-intercept is negative
         String interceptString = Double.toString(yIntercept());
         if (interceptString.indexOf("-") != -1 ) {
@@ -69,22 +72,20 @@ public class LinearEquation {
             finalIntercept = "";
         }
 
-        //checks and removes the .0 from the y-intercept
-        if(interceptString.indexOf(".0") != -1) {
-            finalIntercept = interceptString.substring(0, interceptString.indexOf(".0"));
+        //checks if the slope is already an integer, returns the final equation if it is
+        if (slope() % 1 == 0) {
+            finalSlope = slopeString.substring(0, slopeCheck);
+            return finalSlope + "x" + finalIntercept;
+
         }
 
         //checks and removes the .0 from the slope
-        String slopeString = Double.toString(slope());
-        int slopeCheck = slopeString.indexOf(".0");
         if (slopeCheck != -1) {
             finalSlope = slopeString.substring(0, slopeCheck);
-
             //checks if the slope is zero
         } else if (finalSlope == "0") {
             finalSlope = "";
-        }
-        else {
+        } else {
             //does division to find a common factor between the x and y points
                 double slopeY = y2 - y1; //a constant
                 double slopeX = x2 - x1; //a constant
@@ -144,7 +145,7 @@ public class LinearEquation {
          - The y-intercept of the line (using yIntercept() method)
          - The distance between the two points (using distance() method) */
     public String lineInfo() {
-        String info = "The two points are: (" + x1 + " ," + y1 + ") and (" + x2 + " ," + y2 + ")";
+        String info = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")";
         info += "\nThe equation of the line between these points is: y = " + equation();
         info += "\nThe slope of this line is: " + slope();
         info += "\nThe y-intercept of the is: " + yIntercept();
