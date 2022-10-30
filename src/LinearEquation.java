@@ -42,7 +42,7 @@ public class LinearEquation {
 
 
 
-    /* "Helper" method for use elsewhere in your methods; returns the value toRound rounded(
+    /* "Helper" method for use elsewhere in the method and will return the value toRound rounded(
     to the nearest hundredth */
     public double roundedToHundredth(double toRound) {
         double round = Math.round(toRound * 100);
@@ -56,10 +56,11 @@ public class LinearEquation {
         String finalSlope = "";
         String finalIntercept = "";
 
+        //creates variables to turn the double slope into an integer
         String slopeString = Double.toString(slope());
         int slopeCheck = slopeString.indexOf(".0");
 
-        //checks if the y-intercept is negative
+        //checks the sign of the y-intercept
         String interceptString = Double.toString(yIntercept());
         if (interceptString.indexOf("-") != -1 ) {
             finalIntercept = " - " + interceptString.substring(1); //if the y-intercept is negative
@@ -80,7 +81,7 @@ public class LinearEquation {
             return "-x" + finalIntercept;
         }
 
-        //chekcs if there is a horizontal line
+        //checks if there is a horizontal line
         if (slope() == 0.0) {
             int interceptCheck = interceptString.indexOf(".0");
             finalIntercept = interceptString.substring(0, interceptCheck);
@@ -101,7 +102,6 @@ public class LinearEquation {
         //checks and removes the .0 from the slope
         if (slopeCheck != -1) {
             finalSlope = slopeString.substring(0, slopeCheck);
-            //checks if the slope is zero
         } else {
             //does division to find a common factor between the x and y points
                 double slopeY = y2 - y1; //a constant
@@ -109,20 +109,16 @@ public class LinearEquation {
                 int divisor = 1;
                 double checkY = 1;
                 double checkX = 1;
-                String stringY = ""; //meant to be slopeY as a String to check if the divisor is a factor
-                String stringX = ""; //meant to be slopeX as a String to check if the divisor is a factor
-                while( stringY.indexOf("0") == -1 && stringX.indexOf("0") == -1) {
+                while(checkY % 1 != 0 && checkX % 1 != 0) {
                     divisor++;
                     checkY = slopeY / divisor;
                     checkX = slopeX / divisor;
-                    stringY =  Double.toString(checkY);
-                    stringX =  Double.toString(checkX);
                 }
                 //checks if both x and y are negative. If it's true, removes the negative sign
                 if (Math.abs(slopeX) != slopeX && Math.abs(slopeY) != slopeY) {
                     slopeX *= -1;
                     slopeY *= -1;
-                    // checks if the x value is negative. If it's true, puts the negative sign before the slope
+                    //checks if the x value is negative. If it's true, puts the negative sign before the slope
                 } else if (Math.abs(slopeX) != slopeX) {
                     slopeX *= -1;
                     slopeY *= -1;
